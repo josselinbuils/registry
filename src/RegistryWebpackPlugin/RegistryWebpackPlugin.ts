@@ -61,6 +61,6 @@ export class RegistryWebpackPlugin implements Plugin {
 }
 
 export interface RegistryOptions {
-  externalDependencies: string[];
-  sharedDependencies: string[];
+  externalDependencies?: string[];
+  sharedDependencies?: string[];
 }

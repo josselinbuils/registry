@@ -1,12 +1,8 @@
 {
+  "extends": "./tsconfig",
   "compilerOptions": {
-    "esModuleInterop": true,
-    "lib": ["esnext", "dom"],
-    "module": "esnext",
-    "moduleResolution": "node",
-    "noImplicitAny": true,
+    "lib": ["esnext"],
     "rootDir": "src/RegistryWebpackPlugin",
-    "strict": true,
     "target": "es2019"
   },
   "exclude": ["node_modules", "**/__tests__/**/*"],

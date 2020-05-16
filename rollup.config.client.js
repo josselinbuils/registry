@@ -16,6 +16,7 @@ export default {
       declarationDir: 'dist/client',
       exclude: ['node_modules', '**/__tests__/**/*'],
       include: ['src/client/**/*'],
+      outDir: 'dist/client',
     }),
     closureCompiler(),
   ],

@@ -29,6 +29,6 @@ function renderSharedDependency(
   return `  { name: '${name}', factory: () => import(/* webpackChunkName: "${chunkName}" */ '${name}'), range: '${range}', version: '${version}' },`;
 }
 
-interface RegistryLoaderOptions extends RegistryOptions {
+interface RegistryLoaderOptions extends Required<RegistryOptions> {
   packageDependencies: { [name: string]: string };
 }
