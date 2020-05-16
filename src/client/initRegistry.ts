@@ -11,13 +11,12 @@ export function initRegistry(): {
   const externalDependencies = EXTERNAL_DEPENDENCIES;
   // @ts-ignore
   const sharedDependencies = SHARED_DEPENDENCIES;
-  const dependencies = [...externalDependencies, ...sharedDependencies];
   const global = window as any;
   const registry = global.registry as Registry | undefined;
   const registrySharedDependencies = registry?.sharedDependencies ?? [];
   const get = registry?.get ?? {};
 
-  for (const { name, range } of dependencies) {
+  for (const { name, range } of externalDependencies) {
     const key = `${name}@${range}`;
 
     if (!get.hasOwnProperty(key)) {
@@ -36,7 +35,7 @@ export function initRegistry(): {
   return {
     awaitSharedDependencies: awaitSharedDependencies.bind(
       null,
-      sharedDependencies
+      externalDependencies
     ),
   };
 }

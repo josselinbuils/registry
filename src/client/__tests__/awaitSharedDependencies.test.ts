@@ -8,6 +8,7 @@ describe('awaitSharedDependencies', () => {
   it('should fill dependency content', async () => {
     // Given
     const content = 'content';
+    const externalDependencies = [{ name: 'test', range: '^1.1.0' }];
     const sharedDependencies = [
       {
         name: 'test',
@@ -19,7 +20,7 @@ describe('awaitSharedDependencies', () => {
     (getBestCandidate as jest.Mock).mockReturnValueOnce(sharedDependencies[0]);
 
     // When
-    await awaitSharedDependencies(sharedDependencies);
+    await awaitSharedDependencies(externalDependencies);
 
     // Then
     expect(sharedDependencies[0].content).toEqual(content);
@@ -27,6 +28,7 @@ describe('awaitSharedDependencies', () => {
 
   it('should ignore already filled dependencies', async () => {
     // Given
+    const externalDependencies = [{ name: 'test', range: '^1.1.0' }];
     const sharedDependencies = [
       {
         content: 'content',
@@ -39,7 +41,7 @@ describe('awaitSharedDependencies', () => {
     (getBestCandidate as jest.Mock).mockReturnValueOnce(sharedDependencies[0]);
 
     // When
-    await awaitSharedDependencies(sharedDependencies);
+    await awaitSharedDependencies(externalDependencies);
 
     // Then
     expect(sharedDependencies[0].factory).not.toHaveBeenCalled();
