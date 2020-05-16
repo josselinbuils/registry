@@ -20,9 +20,16 @@ Add the **RegistryWebpackPlugin** to your **Webpack** config file:
 ```javascript
 // webpack.config.js
 
-new RegistryWebpackPlugin({
-  sharedDependencies: ['react', 'react-dom'],
-});
+const { RegistryWebpackPlugin } = require('@josselinbuils/registry/plugin');
+
+modules.exports = {
+  // [...]
+  plugins: [
+    new RegistryWebpackPlugin({
+      sharedDependencies: ['react', 'react-dom'],
+    }),
+  ],
+};
 ```
 
 ### App
@@ -46,9 +53,16 @@ Add the **RegistryWebpackPlugin** to your **Webpack** config file:
 ```javascript
 // webpack.config.js
 
-new RegistryWebpackPlugin({
-  externalDependencies: ['react', 'react-dom'],
-});
+const { RegistryWebpackPlugin } = require('@josselinbuils/registry/plugin');
+
+modules.exports = {
+  // [...]
+  plugins: [
+    new RegistryWebpackPlugin({
+      externalDependencies: ['react', 'react-dom'],
+    }),
+  ],
+};
 ```
 
 ### App
