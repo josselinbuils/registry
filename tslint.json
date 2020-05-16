@@ -1,0 +1,7 @@
+{
+  "extends": "@josselinbuils/tslint",
+  "rules": {
+    "no-default-export": false,
+    "prefer-conditional-expression": false
+  }
+}
