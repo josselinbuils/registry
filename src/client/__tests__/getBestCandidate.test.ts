@@ -13,14 +13,12 @@ describe('getBestCandidate', () => {
         {
           name,
           factory,
-          range: '^1.2.0',
           version: '1.2.4',
         },
         {
-          content: 'content',
+          module: 'module',
           name,
           factory,
-          range: '^1.1.0',
           version: '1.1.5',
         },
       ],
@@ -39,8 +37,8 @@ describe('getBestCandidate', () => {
     const factory = () => Promise.resolve();
     global.registry = {
       sharedDependencies: [
-        { name, factory, range: '^1.2.0', version: '1.2.4' },
-        { name, factory, range: '^1.1.0', version: '1.1.3' },
+        { name, factory, version: '1.2.4' },
+        { name, factory, version: '1.1.3' },
       ],
     } as Registry;
 

@@ -7,14 +7,13 @@ jest.mock('../getBestCandidate');
 describe('getDependency', () => {
   it('should provide a dependency', () => {
     // Given
-    const content = 'content';
+    const module = 'module';
     const name = 'name';
     const range = '^1.0.0';
     (getBestCandidate as jest.Mock).mockReturnValueOnce({
-      content,
+      module,
       factory: () => Promise.resolve(),
       name,
-      range,
       version: '1.0.0',
     } as SharedDependency);
 
@@ -24,21 +23,19 @@ describe('getDependency', () => {
     // Then
     expect(getBestCandidate).toHaveBeenCalledTimes(1);
     expect(getBestCandidate).toHaveBeenCalledWith(name, range);
-    expect(dependency).toEqual(content);
+    expect(dependency).toEqual(module);
   });
 
   it('should throw an error if the dependency has not been loaded', () => {
     // Given
     const name = 'name';
-    const range = '^1.0.0';
     (getBestCandidate as jest.Mock).mockReturnValueOnce({
       factory: () => Promise.resolve(),
       name,
-      range,
       version: '1.0.0',
     } as SharedDependency);
 
     // When/Then
-    expect(() => getDependency(name, range)).toThrow();
+    expect(() => getDependency(name, '^1.0.0')).toThrow();
   });
 });

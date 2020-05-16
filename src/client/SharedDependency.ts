@@ -1,7 +1,6 @@
-import { RegistryDependency } from './RegistryDependency';
-
-export interface SharedDependency extends RegistryDependency {
+export interface SharedDependency {
+  name: string;
   version: string;
-  content?: any;
+  module?: any;
   factory(): Promise<any>;
 }

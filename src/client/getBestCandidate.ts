@@ -16,10 +16,10 @@ export function getBestCandidate(
   return globalSharedDependencies
     .filter((dep) => dep.name === name && satisfies(dep.version, range))
     .sort((a, b) => {
-      if (a.content && !b.content) {
+      if (a.module && !b.module) {
         return -1;
       }
-      if (b.content && !a.content) {
+      if (b.module && !a.module) {
         return 1;
       }
       return rcompare(a.version, b.version) as number;

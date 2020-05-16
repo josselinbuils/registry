@@ -11,7 +11,6 @@ describe('initRegistry', () => {
       {
         name: 'test',
         factory: () => Promise.resolve(),
-        range: '^1.2.0',
         version: '1.2.4',
       },
     ] as SharedDependency[];
@@ -32,13 +31,11 @@ describe('initRegistry', () => {
       {
         name: 'test',
         factory: () => Promise.resolve(),
-        range: '^1.2.0',
         version: '1.2.4',
       },
       {
         name: 'test',
         factory: () => Promise.resolve(),
-        range: '^1.2.5',
         version: '1.2.7',
       },
     ] as SharedDependency[];

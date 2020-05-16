@@ -5,15 +5,14 @@ import { SharedDependency } from '../SharedDependency';
 jest.mock('../getBestCandidate');
 
 describe('awaitSharedDependencies', () => {
-  it('should fill dependency content', async () => {
+  it('should fill dependency module', async () => {
     // Given
-    const content = 'content';
+    const module = 'module';
     const externalDependencies = [{ name: 'test', range: '^1.1.0' }];
     const sharedDependencies = [
       {
         name: 'test',
-        factory: () => Promise.resolve(content),
-        range: '^1.2.0',
+        factory: () => Promise.resolve(module),
         version: '1.2.4',
       },
     ] as SharedDependency[];
@@ -23,7 +22,7 @@ describe('awaitSharedDependencies', () => {
     await awaitSharedDependencies(externalDependencies);
 
     // Then
-    expect(sharedDependencies[0].content).toEqual(content);
+    expect(sharedDependencies[0].module).toEqual(module);
   });
 
   it('should ignore already filled dependencies', async () => {
@@ -31,10 +30,9 @@ describe('awaitSharedDependencies', () => {
     const externalDependencies = [{ name: 'test', range: '^1.1.0' }];
     const sharedDependencies = [
       {
-        content: 'content',
+        module: 'module',
         name: 'test',
         factory: jest.fn(),
-        range: '^1.2.0',
         version: '1.2.4',
       },
     ] as SharedDependency[];
