@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "lib": ["esnext", "dom"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "outDir": "dist/client",
+    "rootDir": "src/client",
+    "strict": true,
+    "target": "es5"
+  },
+  "exclude": ["node_modules", "**/__tests__/**/*"],
+  "include": ["src/client/**/*"]
+}

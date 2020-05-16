@@ -1,9 +1,9 @@
 import typescript from '@rollup/plugin-typescript';
+import tsconfig from './tsconfig.plugin.json';
 
 export default {
   input: [
     'src/RegistryWebpackPlugin/index.ts',
-    'src/RegistryWebpackPlugin/registry.ts',
     'src/RegistryWebpackPlugin/registryLoader.ts',
   ],
   output: {
@@ -14,10 +14,11 @@ export default {
   external: ['path', 'webpack'],
   plugins: [
     typescript({
+      ...tsconfig.compilerOptions,
       declaration: true,
       declarationDir: 'dist/plugin',
-      exclude: ['**/__tests__/**/*'],
-      rootDir: 'src/RegistryWebpackPlugin',
+      exclude: ['node_modules', '**/__tests__/**/*'],
+      include: ['src/RegistryWebpackPlugin/**/*'],
     }),
   ],
 };

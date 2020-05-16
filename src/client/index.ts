@@ -1,0 +1,1 @@
+export { initRegistry } from './initRegistry';

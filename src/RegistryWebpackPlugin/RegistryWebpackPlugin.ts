@@ -1,7 +1,7 @@
 import * as path from 'path';
-import webpack, { Compiler, Plugin, SingleEntryPlugin } from 'webpack';
-import LoaderContext = webpack.loader.LoaderContext;
+import { Compiler, loader, Plugin } from 'webpack';
 
+const PATH_REGEX = /(registry\/dist\/client\/index\.js|registry\/client\/index\.js)$/;
 const PLUGIN_NAME = 'RegistryWebpackPlugin';
 
 export class RegistryWebpackPlugin implements Plugin {
@@ -14,9 +14,9 @@ export class RegistryWebpackPlugin implements Plugin {
       compilation.hooks.normalModuleLoader.tap(
         PLUGIN_NAME,
         (context, module) => {
-          const loaderContext = (module as unknown) as LoaderContext;
+          const loaderContext = (module as unknown) as loader.LoaderContext;
 
-          if (/registry\.js$/.test(loaderContext.resource)) {
+          if (PATH_REGEX.test(loaderContext.resource)) {
             loaderContext.loaders.unshift({
               loader: path.resolve(__dirname, 'registryLoader.js'),
               options: { sharedDependencies },
@@ -25,12 +25,6 @@ export class RegistryWebpackPlugin implements Plugin {
         }
       );
     });
-
-    new SingleEntryPlugin(
-      compiler.context,
-      path.resolve(__dirname, 'registry.js'),
-      'registry'
-    ).apply(compiler);
   }
 }
 

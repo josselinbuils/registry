@@ -1,1 +1,3 @@
-module.exports = () => {};
+import { initRegistry } from '../../dist/client';
+
+initRegistry();

@@ -10,11 +10,9 @@ describe('registryLoader', () => {
 
     // Then
     expect(registry).toEqual(`\
-window.registry = { ...window.registry };
-window.registry.dependencies = [
-  ...window.registry.dependencies,
-  { name: 'node-noop', factory: () => import(/* webpackChunkName: "registry~node-noop" */ 'node-noop'), version: '1.0.0' },
-  { name: 'node-noop', factory: () => import(/* webpackChunkName: "registry~node-noop" */ 'node-noop'), version: '1.0.0' },
+const SHARED_DEPENDENCIES = [
+  { name: 'node-noop', factory: () => import(/* webpackChunkName: "registry~node-noop" */ 'node-noop'), range: '^1.0.0', version: '1.0.0' },
+  { name: 'node-noop', factory: () => import(/* webpackChunkName: "registry~node-noop" */ 'node-noop'), range: '^1.0.0', version: '1.0.0' },
 ];
 `);
   });

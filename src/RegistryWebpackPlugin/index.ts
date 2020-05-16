@@ -1,1 +1,4 @@
-export * from './RegistryWebpackPlugin';
+export {
+  RegistryOptions,
+  RegistryWebpackPlugin,
+} from './RegistryWebpackPlugin';
