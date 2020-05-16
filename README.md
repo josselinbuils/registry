@@ -1,3 +1,72 @@
 # registry
 
 Allows sharing dependencies between micro frontends.
+
+# Install
+
+```bash
+npm install --dev @josselinbuils/registry
+yarn add -D @josselinbuils/registry
+```
+
+# Usage
+
+## Host
+
+### Webpack config
+
+Add the **RegistryWebpackPlugin** to your **Webpack** config file:
+
+```javascript
+// webpack.config.js
+
+new RegistryWebpackPlugin({
+  sharedDependencies: ['react', 'react-dom'],
+});
+```
+
+### App
+
+Initialize the registry as soon as possible in your host app:
+
+```javascript
+// index.js
+
+import { initRegistry } from '@josselinbuils/registry/client';
+
+initRegistry();
+```
+
+## Fragments
+
+### Webpack config
+
+Add the **RegistryWebpackPlugin** to your **Webpack** config file:
+
+```javascript
+// webpack.config.js
+
+new RegistryWebpackPlugin({
+  externalDependencies: ['react', 'react-dom'],
+});
+```
+
+### App
+
+Initialize the registry before importing any shared dependency in your fragments:
+
+```javascript
+// index.js
+
+import { initRegistry } from '@josselinbuils/registry/client';
+
+const { awaitSharedDependencies } = initRegistry();
+
+awaitSharedDependencies().then(() => {
+  import('./render');
+});
+```
+
+## Examples
+
+You can find a working example in **examples/basic** folder.
