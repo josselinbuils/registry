@@ -1,6 +1,6 @@
 import { Registry } from './Registry';
-import { RegistryDependency } from './RegistryDependency';
 import { rcompare, satisfies } from './semver';
+import { SharedDependency } from './SharedDependency';
 
 /**
  * Provides the best dependency candidate to be loaded regarding the following
@@ -9,9 +9,9 @@ import { rcompare, satisfies } from './semver';
 export function getBestCandidate(
   name: string,
   range: string
-): RegistryDependency {
+): SharedDependency {
   const globalSharedDependencies = ((window as any).registry as Registry)
-    .dependencies;
+    .sharedDependencies;
 
   return globalSharedDependencies
     .filter((dep) => dep.name === name && satisfies(dep.version, range))

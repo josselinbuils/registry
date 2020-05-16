@@ -1,6 +1,6 @@
 import { getBestCandidate } from '../getBestCandidate';
 import { getDependency } from '../getDependency';
-import { RegistryDependency } from '../RegistryDependency';
+import { SharedDependency } from '../SharedDependency';
 
 jest.mock('../getBestCandidate');
 
@@ -16,7 +16,7 @@ describe('getDependency', () => {
       name,
       range,
       version: '1.0.0',
-    } as RegistryDependency);
+    } as SharedDependency);
 
     // When
     const dependency = getDependency(name, range);
@@ -36,7 +36,7 @@ describe('getDependency', () => {
       name,
       range,
       version: '1.0.0',
-    } as RegistryDependency);
+    } as SharedDependency);
 
     // When/Then
     expect(() => getDependency(name, range)).toThrow();

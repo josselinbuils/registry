@@ -1,6 +1,6 @@
 import { awaitSharedDependencies } from '../awaitSharedDependencies';
 import { getBestCandidate } from '../getBestCandidate';
-import { RegistryDependency } from '../RegistryDependency';
+import { SharedDependency } from '../SharedDependency';
 
 jest.mock('../getBestCandidate');
 
@@ -15,7 +15,7 @@ describe('awaitSharedDependencies', () => {
         range: '^1.2.0',
         version: '1.2.4',
       },
-    ] as RegistryDependency[];
+    ] as SharedDependency[];
     (getBestCandidate as jest.Mock).mockReturnValueOnce(sharedDependencies[0]);
 
     // When
@@ -35,7 +35,7 @@ describe('awaitSharedDependencies', () => {
         range: '^1.2.0',
         version: '1.2.4',
       },
-    ] as RegistryDependency[];
+    ] as SharedDependency[];
     (getBestCandidate as jest.Mock).mockReturnValueOnce(sharedDependencies[0]);
 
     // When

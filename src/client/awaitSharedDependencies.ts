@@ -1,8 +1,8 @@
 import { getBestCandidate } from './getBestCandidate';
-import { RegistryDependency } from './RegistryDependency';
+import { SharedDependency } from './SharedDependency';
 
 export async function awaitSharedDependencies(
-  dependencies: RegistryDependency[]
+  dependencies: SharedDependency[]
 ): Promise<void> {
   for (const { name, range } of dependencies) {
     const bestCandidate = getBestCandidate(name, range);

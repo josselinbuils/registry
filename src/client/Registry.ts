@@ -1,6 +1,7 @@
-import { RegistryDependency } from './RegistryDependency';
+import { SharedDependency } from './SharedDependency';
 
 export interface Registry {
-  dependencies: RegistryDependency[];
-  get(name: string, range: string): any;
+  sharedDependencies: SharedDependency[];
+  // format: name@range
+  get: { [dependency: string]: any };
 }

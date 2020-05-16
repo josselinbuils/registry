@@ -9,7 +9,7 @@ describe('getBestCandidate', () => {
     const name = 'test';
     const factory = () => Promise.resolve();
     global.registry = {
-      dependencies: [
+      sharedDependencies: [
         {
           name,
           factory,
@@ -38,7 +38,7 @@ describe('getBestCandidate', () => {
     const name = 'test';
     const factory = () => Promise.resolve();
     global.registry = {
-      dependencies: [
+      sharedDependencies: [
         { name, factory, range: '^1.2.0', version: '1.2.4' },
         { name, factory, range: '^1.1.0', version: '1.1.3' },
       ],

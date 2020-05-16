@@ -5,17 +5,32 @@ import { Registry } from './Registry';
 export function initRegistry(): {
   awaitSharedDependencies(): Promise<void>;
 } {
-  // SHARED_DEPENDENCIES will be injected by the RegistryWebpackPlugin
+  // EXTERNAL_DEPENDENCIES and SHARED_DEPENDENCIES will be injected by the
+  // RegistryWebpackPlugin
+  // @ts-ignore
+  const externalDependencies = EXTERNAL_DEPENDENCIES;
   // @ts-ignore
   const sharedDependencies = SHARED_DEPENDENCIES;
+  const dependencies = [...externalDependencies, ...sharedDependencies];
   const global = window as any;
   const registry = global.registry as Registry | undefined;
-  const registryDependencies = registry?.dependencies ?? [];
+  const registrySharedDependencies = registry?.sharedDependencies ?? [];
+  const get = registry?.get ?? {};
+
+  for (const { name, range } of dependencies) {
+    const key = `${name}@${range}`;
+
+    if (!get.hasOwnProperty(key)) {
+      Object.defineProperty(get, key, {
+        get: () => getDependency(name, range),
+      });
+    }
+  }
 
   // Filled as host and fragments are loaded
   global.registry = {
-    get: registry?.get ?? getDependency,
-    dependencies: [...registryDependencies, ...sharedDependencies],
+    get,
+    sharedDependencies: [...registrySharedDependencies, ...sharedDependencies],
   } as Registry;
 
   return {

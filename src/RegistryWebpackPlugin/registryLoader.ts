@@ -1,25 +1,34 @@
-import * as path from 'path';
-const packageDotJson = require(path.resolve(process.cwd(), 'package.json'));
+import { RegistryOptions } from './RegistryWebpackPlugin';
 
 export default function registryLoader(this: any, source: string): string {
-  const { sharedDependencies } = this.query;
+  const { externalDependencies, packageDependencies, sharedDependencies } = this
+    .query as RegistryLoaderOptions;
+
   return [
+    'const EXTERNAL_DEPENDENCIES = [',
+    ...externalDependencies.map(
+      (name) => `  { name: '${name}', range: '${packageDependencies[name]}' },`
+    ),
+    '];',
     'const SHARED_DEPENDENCIES = [',
-    ...sharedDependencies.map(renderDependency),
+    ...sharedDependencies.map(
+      renderSharedDependency.bind(null, packageDependencies)
+    ),
     '];',
     source,
   ].join('\n');
 }
 
-function renderDependency(name: string): string {
+function renderSharedDependency(
+  packageDependencies: { [name: string]: string },
+  name: string
+): string {
   const chunkName = `registry~${name.replace(/@/g, '')}`;
-  const packageDependencies = {
-    // Wondering if there are some use cases where it is ok to have a shared
-    // dependency declared in dependencies instead of devDependencies
-    ...packageDotJson.dependencies,
-    ...packageDotJson.devDependencies,
-  };
   const range = packageDependencies[name];
   const { version } = require(`${name}/package.json`);
   return `  { name: '${name}', factory: () => import(/* webpackChunkName: "${chunkName}" */ '${name}'), range: '${range}', version: '${version}' },`;
+}
+
+interface RegistryLoaderOptions extends RegistryOptions {
+  packageDependencies: { [name: string]: string };
 }

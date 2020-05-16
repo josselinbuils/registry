@@ -1,33 +1,34 @@
 import { initRegistry } from '../initRegistry';
 import { Registry } from '../Registry';
-import { RegistryDependency } from '../RegistryDependency';
+import { SharedDependency } from '../SharedDependency';
 
 jest.mock('../getDependency');
 
 describe('initRegistry', () => {
   it('should create a registry containing shared dependencies', () => {
     // Given
-    const sharedDependencies = [
+    const dependencies = [
       {
         name: 'test',
         factory: () => Promise.resolve(),
         range: '^1.2.0',
         version: '1.2.4',
       },
-    ] as RegistryDependency[];
-    (window as any).SHARED_DEPENDENCIES = sharedDependencies;
+    ] as SharedDependency[];
+    (window as any).EXTERNAL_DEPENDENCIES = [];
+    (window as any).SHARED_DEPENDENCIES = dependencies;
 
     // When
     initRegistry();
 
     // Then
-    const { dependencies } = (window as any).registry as Registry;
-    expect(dependencies).toContain(sharedDependencies[0]);
+    const { sharedDependencies } = (window as any).registry as Registry;
+    expect(sharedDependencies).toContain(dependencies[0]);
   });
 
   it('should extend an existing registry', () => {
     // Given
-    const sharedDependencies = [
+    const dependencies = [
       {
         name: 'test',
         factory: () => Promise.resolve(),
@@ -40,17 +41,18 @@ describe('initRegistry', () => {
         range: '^1.2.5',
         version: '1.2.7',
       },
-    ] as RegistryDependency[];
-    (window as any).SHARED_DEPENDENCIES = [sharedDependencies[0]];
+    ] as SharedDependency[];
+    (window as any).EXTERNAL_DEPENDENCIES = [];
+    (window as any).SHARED_DEPENDENCIES = [dependencies[0]];
     initRegistry();
-    (window as any).SHARED_DEPENDENCIES = [sharedDependencies[1]];
+    (window as any).SHARED_DEPENDENCIES = [dependencies[1]];
 
     // When
     initRegistry();
 
     // Then
-    const { dependencies } = (window as any).registry as Registry;
-    expect(dependencies).toContain(sharedDependencies[0]);
-    expect(dependencies).toContain(sharedDependencies[1]);
+    const { sharedDependencies } = (window as any).registry as Registry;
+    expect(sharedDependencies).toContain(dependencies[0]);
+    expect(sharedDependencies).toContain(dependencies[1]);
   });
 });
