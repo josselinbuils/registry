@@ -1,4 +1,4 @@
-import { initRegistry } from '@josselinbuils/registry/client';
+import { initRegistry } from '@josselinbuils/registry';
 
 initRegistry();
 import('./render');

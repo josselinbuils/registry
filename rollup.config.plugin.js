@@ -2,10 +2,7 @@ import typescript from '@rollup/plugin-typescript';
 import tsconfig from './tsconfig.plugin.json';
 
 export default {
-  input: [
-    'src/RegistryWebpackPlugin/index.ts',
-    'src/RegistryWebpackPlugin/registryLoader.ts',
-  ],
+  input: ['src/plugin/index.ts', 'src/plugin/registryLoader.ts'],
   output: {
     dir: 'dist/plugin',
     format: 'cjs',
@@ -18,7 +15,7 @@ export default {
       declaration: true,
       declarationDir: 'dist/plugin',
       exclude: ['node_modules', '**/__tests__/**/*'],
-      include: ['src/RegistryWebpackPlugin/**/*'],
+      include: ['src/plugin/**/*'],
     }),
   ],
 };

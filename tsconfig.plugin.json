@@ -2,9 +2,9 @@
   "extends": "./tsconfig",
   "compilerOptions": {
     "lib": ["esnext"],
-    "rootDir": "src/RegistryWebpackPlugin",
+    "rootDir": "src/plugin",
     "target": "es2019"
   },
   "exclude": ["node_modules", "**/__tests__/**/*"],
-  "include": ["src/RegistryWebpackPlugin/**/*"]
+  "include": ["src/plugin/**/*"]
 }

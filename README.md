@@ -39,7 +39,7 @@ Initialize the registry as soon as possible in your host app:
 ```javascript
 // index.js
 
-import { initRegistry } from '@josselinbuils/registry/client';
+import { initRegistry } from '@josselinbuils/registry';
 
 initRegistry();
 ```
@@ -72,7 +72,7 @@ Initialize the registry before importing any shared dependency in your fragments
 ```javascript
 // index.js
 
-import { initRegistry } from '@josselinbuils/registry/client';
+import { initRegistry } from '@josselinbuils/registry';
 
 const { awaitSharedDependencies } = initRegistry();
 
