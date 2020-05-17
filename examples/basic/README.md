@@ -1,6 +1,8 @@
 # Basic example
 
-![graphic](./graphic.png)
+<p align="center">
+  <img alt ="graphic" src="./graphic.png" />
+</p>
 
 This example shows how to share dependencies between a host and a fragment
 loaded on the host.
