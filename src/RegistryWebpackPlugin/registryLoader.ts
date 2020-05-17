@@ -11,22 +11,16 @@ export default function registryLoader(this: any, source: string): string {
     ),
     '];',
     'const SHARED_DEPENDENCIES = [',
-    ...sharedDependencies.map(
-      renderSharedDependency.bind(null, packageDependencies)
-    ),
+    ...sharedDependencies.map(renderSharedDependency),
     '];',
     source,
   ].join('\n');
 }
 
-function renderSharedDependency(
-  packageDependencies: { [name: string]: string },
-  name: string
-): string {
+function renderSharedDependency(name: string): string {
   const chunkName = `registry~${name.replace(/@/g, '')}`;
-  const range = packageDependencies[name];
   const { version } = require(`${name}/package.json`);
-  return `  { name: '${name}', factory: () => import(/* webpackChunkName: "${chunkName}" */ '${name}'), range: '${range}', version: '${version}' },`;
+  return `  { name: '${name}', factory: () => import(/* webpackChunkName: "${chunkName}" */ '${name}'), version: '${version}' },`;
 }
 
 interface RegistryLoaderOptions extends Required<RegistryOptions> {
