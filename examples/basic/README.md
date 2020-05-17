@@ -1,5 +1,7 @@
 # Basic example
 
+![graphic](./graphic.svg)
+
 This example shows how to share dependencies between a host and a fragment
 loaded on the host.
 
