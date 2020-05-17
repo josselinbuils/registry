@@ -21,7 +21,7 @@ describe('initRegistry', () => {
     initRegistry();
 
     // Then
-    const { sharedDependencies } = (window as any).registry as Registry;
+    const { sharedDependencies } = window.registry as Registry;
     expect(sharedDependencies).toContain(dependencies[0]);
   });
 
@@ -48,7 +48,7 @@ describe('initRegistry', () => {
     initRegistry();
 
     // Then
-    const { sharedDependencies } = (window as any).registry as Registry;
+    const { sharedDependencies } = window.registry as Registry;
     expect(sharedDependencies).toContain(dependencies[0]);
     expect(sharedDependencies).toContain(dependencies[1]);
   });

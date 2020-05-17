@@ -1,6 +1,5 @@
 import { awaitSharedDependencies } from './awaitSharedDependencies';
 import { getDependency } from './getDependency';
-import { Registry } from './Registry';
 
 export function initRegistry(): {
   awaitSharedDependencies(): Promise<void>;
@@ -11,8 +10,8 @@ export function initRegistry(): {
   const externalDependencies = EXTERNAL_DEPENDENCIES;
   // @ts-ignore
   const sharedDependencies = SHARED_DEPENDENCIES;
-  const global = window as any;
-  const registry = global.registry as Registry | undefined;
+  const { registry } = window;
+  const registryExternalDependencies = registry?.externalDependencies ?? [];
   const registrySharedDependencies = registry?.sharedDependencies ?? [];
   const get = registry?.get ?? {};
 
@@ -27,10 +26,14 @@ export function initRegistry(): {
   }
 
   // Filled as host and fragments are loaded
-  global.registry = {
+  window.registry = {
     get,
+    externalDependencies: [
+      ...registryExternalDependencies,
+      ...externalDependencies,
+    ],
     sharedDependencies: [...registrySharedDependencies, ...sharedDependencies],
-  } as Registry;
+  };
 
   return {
     awaitSharedDependencies: awaitSharedDependencies.bind(

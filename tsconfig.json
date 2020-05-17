@@ -6,5 +6,7 @@
     "moduleResolution": "node",
     "noImplicitAny": true,
     "strict": true
-  }
+  },
+  "exclude": ["node_modules"],
+  "include": ["src/**/*"]
 }
