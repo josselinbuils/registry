@@ -33,13 +33,8 @@ function compile(options: RegistryOptions): Promise<Stats> {
   return new Promise<Stats>((resolve, reject) => {
     const compiler = webpack(
       {
-        mode: 'development',
         entry: path.resolve(__dirname, '__fixtures__/index.js'),
         plugins: [new RegistryWebpackPlugin(options)],
-        output: {
-          filename: '[name].js',
-          path: path.resolve(process.cwd(), 'tmp'),
-        },
       },
       (error, stats) => {
         if (error !== null) {
