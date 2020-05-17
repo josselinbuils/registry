@@ -2,6 +2,19 @@
 
 Allows sharing dependencies between micro frontends.
 
+# Introduction
+
+With the arrival of micro frontends, one of the main challenges is sharing
+dependencies to avoid making websites too big.
+
+This library tries to take up this challenge thanks to **semantic versioning**
+which allows providing ranges of versions instead of fixed versions which brings
+flexibility.
+
+<p align="center">
+  <img alt ="graphic" src="./doc/semver.png" />
+</p>
+
 # Install
 
 ```bash
