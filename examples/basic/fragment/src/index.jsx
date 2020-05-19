@@ -1,7 +1,7 @@
 import { initRegistry } from '@josselinbuils/registry';
 
-const { awaitSharedDependencies } = initRegistry();
+const { awaitExternalDependencies } = initRegistry();
 
-awaitSharedDependencies().then(() => {
+awaitExternalDependencies().then(() => {
   import('./render');
 });

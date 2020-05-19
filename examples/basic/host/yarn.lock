@@ -821,10 +821,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@josselinbuils/registry@~0.1.4":
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/@josselinbuils/registry/-/registry-0.1.4.tgz#03f36c499814409a3c8e223f39cc933421ffb6f6"
-  integrity sha512-Vf4a8BT6F4u+ndtIjWYBUfzuiUBEj1B6AkxkzS6Gv/1Tgy1OTmTSxShogvE+gUbuHS8T0A6dEwYIgjufy3syqw==
+"@josselinbuils/registry@~0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@josselinbuils/registry/-/registry-0.2.0.tgz#1264ec770d2cc4278fd42641e64ee4f35d22e6f8"
+  integrity sha512-Gfl1/D+VvmkPtSn3EF9WQGVXCdsaFSqFoz0c9CGY6+qVbY46hznOKmQZTe9bklK/dN5qzj/EATQ3VOLdVSC8zg==
 
 "@types/events@*":
   version "3.0.0"

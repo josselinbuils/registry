@@ -1,7 +1,7 @@
 import { ExternalDependency } from './ExternalDependency';
 import { getBestCandidate } from './getBestCandidate';
 
-export async function awaitSharedDependencies(
+export async function awaitExternalDependencies(
   externalDependencies: ExternalDependency[]
 ): Promise<void> {
   for (const { name, range } of externalDependencies) {

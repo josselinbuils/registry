@@ -87,9 +87,9 @@ Initialize the registry before importing any shared dependency in your fragments
 
 import { initRegistry } from '@josselinbuils/registry';
 
-const { awaitSharedDependencies } = initRegistry();
+const { awaitExternalDependencies } = initRegistry();
 
-awaitSharedDependencies().then(() => {
+awaitExternalDependencies().then(() => {
   import('./render');
 });
 ```

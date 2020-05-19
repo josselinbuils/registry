@@ -1,8 +1,8 @@
-import { awaitSharedDependencies } from './awaitSharedDependencies';
+import { awaitExternalDependencies } from './awaitExternalDependencies';
 import { getDependency } from './getDependency';
 
 export function initRegistry(): {
-  awaitSharedDependencies(): Promise<void>;
+  awaitExternalDependencies(): Promise<void>;
 } {
   // EXTERNAL_DEPENDENCIES and SHARED_DEPENDENCIES will be injected by the
   // RegistryWebpackPlugin
@@ -36,7 +36,7 @@ export function initRegistry(): {
   };
 
   return {
-    awaitSharedDependencies: awaitSharedDependencies.bind(
+    awaitExternalDependencies: awaitExternalDependencies.bind(
       null,
       externalDependencies
     ),

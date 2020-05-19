@@ -1,10 +1,10 @@
-import { awaitSharedDependencies } from '../awaitSharedDependencies';
+import { awaitExternalDependencies } from '../awaitExternalDependencies';
 import { getBestCandidate } from '../getBestCandidate';
 import { SharedDependency } from '../SharedDependency';
 
 jest.mock('../getBestCandidate');
 
-describe('awaitSharedDependencies', () => {
+describe('awaitExternalDependencies', () => {
   it('should fill dependency module', async () => {
     // Given
     const module = 'module';
@@ -19,7 +19,7 @@ describe('awaitSharedDependencies', () => {
     (getBestCandidate as jest.Mock).mockReturnValueOnce(sharedDependencies[0]);
 
     // When
-    await awaitSharedDependencies(externalDependencies);
+    await awaitExternalDependencies(externalDependencies);
 
     // Then
     expect(sharedDependencies[0].module).toEqual(module);
@@ -39,7 +39,7 @@ describe('awaitSharedDependencies', () => {
     (getBestCandidate as jest.Mock).mockReturnValueOnce(sharedDependencies[0]);
 
     // When
-    await awaitSharedDependencies(externalDependencies);
+    await awaitExternalDependencies(externalDependencies);
 
     // Then
     expect(sharedDependencies[0].factory).not.toHaveBeenCalled();
